@@ -1,1 +1,3 @@
-export const TARGET_URL = "http://si8a1.asuscomm.com:8000/image/";
+export const TARGET_URL = "http://35.236.184.100:8080/";
+export const NODE_URL = `${TARGET_URL}ffilterNodes/`
+export const GRAPH_URL = `${TARGET_URL}graph/`

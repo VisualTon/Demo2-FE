@@ -1,19 +1,28 @@
-import { TARGET_URL } from '../core/setting'; 
-export const getImage = async () => {
-    let data = "";
-    await fetch(TARGET_URL /*{
-        method: "GET",
-        headers: {
-            "accept": "application/json",
-            "Access-Control-Allow-Origin": ["*"]
+import { TARGET_URL } from '../core/setting';
+
+const parse = (dataArray) => {
+    return dataArray.map(data=>{
+        return {
+            tx_id: data["Transaction_id"],
+            block_id: data["Block_id"],
+            sender_address: data["Sender_address"],
+            receiver_address: data["Receiver_address"],
+            type: data["Type"],
+            amount: data["Amount"],
+            confirm_Time: data["Confirm_time"]
         }
-    }*/)
+    })
+}
+export const getFilteredNodes = async (amount) => {
+    let data = "";
+    await fetch(`${TARGET_URL}filteredNodes/?amount=${amount}`)
     .then(function (response) {
         return response.json();
     })
     .then(function (myJson) {
         data = myJson;
-        console.log(data);
     });
-    return data;
+    console.log(data);
+    console.log("data");
+    return parse(data);
 }
